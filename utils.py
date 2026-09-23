@@ -121,7 +121,7 @@ def compute_loss(args: Namespace, models: Dict[str, nn.Module], batch: Dict[str,
         "obs_loss": batch_obs_loss / args.train_seq_len,
         "reward_loss": batch_reward_loss / args.train_seq_len,
         "kl_loss": batch_kl_loss / args.train_seq_len,
-        "loss": batch_loss / args.train_seq_len
+        "total_loss": batch_loss / args.train_seq_len
         }
 
 

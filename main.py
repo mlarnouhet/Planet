@@ -5,6 +5,7 @@ import numpy as np
 from tqdm import tqdm
 import torch
 from huggingface_hub import HfApi
+import wandb
 from dm_control import suite
 from dm_control.suite.wrappers import pixels
 from utils import setup_logs, setup_wnb, setup_dirs, compute_loss, preprocess_obs, set_seed
@@ -86,49 +87,40 @@ def main(args: Namespace):
             model.train()
 
         metrics_dict = {
-            "step_obs_loss" = 0.0,
-            "step_reward_loss" = 0.0,
-            "step_kl_loss" = 0.0,
-            "step_loss" = 0.0,
-            "encoder_grad_norm" = 0.0,
-            "det_state_model_grad_norm" = 0.0,
-            "stoch_state_model_grad_norm" = 0.0,
-            "obs_model_grad_norm" = 0.0,
-            "reward_model_grad_norm" = 0.0,
-            "reward" = 0.0,
-            "traj_length"= 0.0
+            "obs_loss": 0.0,
+            "reward_loss": 0.0,
+            "kl_loss": 0.0,
+            "total_loss": 0.0,
+            "encoder_grad_norm": 0.0,
+            "det_state_model_grad_norm": 0.0,
+            "stoch_state_model_grad_norm": 0.0,
+            "obs_model_grad_norm": 0.0,
+            "reward_model_grad_norm": 0.0,
         }
-
 
         for _ in tqdm(range(args.n_update_steps), desc="Running update steps"):
             batch = dataset.draw_batch()
             batch = {k: v.cuda() for (k,v) in batch.items()}
-            metrics_dict = compute_loss(args, models, batch)
-            step_obs_loss += metrics_dict["obs_loss"]
-            step_reward_loss += metrics_dict["reward_loss"]
-            step_kl_loss += metrics_dict["kl_loss"]
-            step_loss += metrics_dict["loss"]
-            loss = metrics_dict["loss"]
+            temp_metrics_dict = compute_loss(args, models, batch)
+            loss = temp_metrics_dict["total_loss"]
             optimizer.zero_grad()
             loss.backward()
 
-            torch.nn.utils.clip_grad_norm_([param for param in model.parameters()], max_norm=1000.0)
-
-            grad_norm = torch.nn.utils.get_total_norm([p.grad for p in model.parameters() if p.grad is not None], norm_type=2.0)
+            for (k, v) in temp_metrics_dict.items():
+                metrics_dict[k] += v
+            for (model_name, model) in models.items():
+                metrics_dict[model_name + "_grad_norm"] += torch.nn.utils.clip_grad_norm_([param for param in model.parameters()], max_norm=1000.0)
+            
             optimizer.step()
 
-        metrics_dict = {
-            "obs_loss": step_obs_loss.item() / args.n_update_steps,
-            "reward_loss": step_reward_loss.item() / args.n_update_steps,
-            "kl_loss": step_kl_loss.item() / args.n_update_steps,
-            "loss": step_loss.item() / args.n_update_steps
-            }
+        metrics_dict = {k: v.item() / args.n_update_steps for (k, v) in metrics_dict}
 
         if step % args.log_every == 0:
-        self.logger.info(f"Step {step} metrics:")
-        for key, value in metrics_dict.items():
-            self.logger.info(f"{key}: {value}")
-            if self.use_wandb:
+            logger.info(f"Step {step} metrics:")
+            for key, value in metrics_dict.items():
+                logger.info(f"{key}: {value}")
+            logger.info(f"Rewards: {[dataset.trajectories[-i]["reward"].sum() for i in range(5)]}")
+            if args.use_wandb:
                 wandb.log({"step": step, **metrics_dict})
         
         metrics_list.append(metrics_dict)
@@ -188,11 +180,11 @@ def main(args: Namespace):
             upload_future_model = api.upload_file(
                 repo_id=args.hf_repo_id,
                 path_or_fileobj=checkpoint_dir,
-                path_in_repo=f"run_{self.run_id}_{args.domain_name}_{args.task_name}/step{step}/models.pt",
-                commit_message=f"Checkpoint: run {args.domain_name}_{args.task_name}_{self.run_id}, step {step}",
+                path_in_repo=f"run_{args.run_id}_{args.domain_name}_{args.task_name}/step{step}/models.pt",
+                commit_message=f"Checkpoint: run {args.domain_name}_{args.task_name}_{args.run_id}, step {step}",
                 run_as_future=True,
             )
-            upload_future_data.result()
+            upload_future_model.result()
         
 
 
