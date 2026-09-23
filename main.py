@@ -106,7 +106,7 @@ def main(args: Namespace):
             batch = dataset.draw_batch()
             batch = {k: v.cuda() for (k,v) in batch.items()}
 
-            with torch.autocast(device_type="cuda", dtype=torch.bfloat16):
+            with torch.autocast(device_type="cuda", dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.fp16):
                 temp_metrics_dict = compute_loss(args, models, batch)
 
             loss = temp_metrics_dict["total_loss"]
@@ -147,7 +147,7 @@ def main(args: Namespace):
                 "reward": []
             }
             for _ in tqdm(range(math.ceil(args.T/args.n_action_repeat)), desc="Sampling"):
-                with torch.autocast(device_type="cuda", dtype=torch.bfloat16):
+                with torch.autocast(device_type="cuda", dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.fp16):
                     mu_s, sigma_s = models["encoder"](obs.unsqueeze(0).cuda(), h)
                     s = mu_s + torch.randn_like(sigma_s) * sigma_s
                     action = plan_action(args, models, s, h)

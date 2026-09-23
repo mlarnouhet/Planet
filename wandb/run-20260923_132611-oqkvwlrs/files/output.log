@@ -1,0 +1,15 @@
+Running update steps:  14%|████████▎                                                  | 14/100 [00:13<01:22,  1.04it/s]
+Training:   0%|                                                                               | 0/1000 [00:13<?, ?it/s]
+Traceback (most recent call last):
+  File "/workspace/Planet/main.py", line 232, in <module>
+    main(args)
+  File "/workspace/Planet/main.py", line 114, in main
+    loss.backward()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/torch/_tensor.py", line 647, in backward
+    torch.autograd.backward(
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/torch/autograd/__init__.py", line 354, in backward
+    _engine_run_backward(
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

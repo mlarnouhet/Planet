@@ -1,0 +1,114 @@
+_wandb:
+    value:
+        cli_version: 0.28.2
+        e:
+            atzxx4swo76cwna0mapqc9kih7wsne2r:
+                codePath: main.py
+                codePathLocal: main.py
+                cpu_count: 36
+                cpu_count_logical: 72
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "17179869184"
+                        used: "9611141120"
+                email: mlarnouhet@gmail.com
+                executable: /workspace/Planet/.venv/bin/python
+                git:
+                    commit: e798985600f40990e516fe391ec56abc8c7888fc
+                    remote: https://github.com/mlarnouhet/Planet.git
+                gpu: Tesla V100-PCIE-32GB
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Volta
+                      cudaCores: 5120
+                      memoryTotal: "34359738368"
+                      name: Tesla V100-PCIE-32GB
+                      uuid: GPU-e5c2bf17-cf24-13b2-24d7-7b0640cd38f9
+                host: efdb18286b38
+                memory:
+                    total: "168837812224"
+                os: Linux-5.15.0-191-generic-x86_64-with-glibc2.39
+                program: /workspace/Planet/main.py
+                python: CPython 3.11.16
+                root: /workspace/Planet
+                startedAt: "2026-09-23T13:26:11.041556Z"
+                writerId: atzxx4swo76cwna0mapqc9kih7wsne2r
+        m:
+            - "1": step
+              "6":
+                - 3
+              "7": []
+            - "2": '*'
+              "5": 1
+              "6":
+                - 1
+              "7": []
+        python_version: 3.11.16
+        t:
+            "1":
+                - 1
+                - 49
+            "2":
+                - 1
+                - 49
+            "3":
+                - 7
+                - 13
+                - 16
+            "4": 3.11.16
+            "5": 0.28.2
+            "12": 0.28.2
+            "13": linux-x86_64
+K:
+    value: 100
+T:
+    value: 1000
+action_dim:
+    value: 1
+batch_size:
+    value: 50
+debug:
+    value: false
+domain_name:
+    value: cartpole
+hf_repo_id:
+    value: Marcorico/planet
+hidden_dim:
+    value: 200
+horizon_len:
+    value: 12
+latent_dim:
+    value: 30
+log_every:
+    value: 10
+n_action_repeat:
+    value: 8
+n_candidate_samples:
+    value: 1000
+n_optimization_steps:
+    value: 10
+n_random_seeds:
+    value: 5
+n_steps:
+    value: 1000
+n_update_steps:
+    value: 100
+resume:
+    value: false
+reward_scale:
+    value: 10
+run_id:
+    value: 1
+save_interval:
+    value: 50
+seed:
+    value: 42
+setup_wandb:
+    value: true
+step_to_load:
+    value: 0
+task_name:
+    value: swingup
+train_seq_len:
+    value: 50

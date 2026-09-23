@@ -1,0 +1,44 @@
+2026-09-23 13:26:11,045 INFO    MainThread:57303 [wandb_setup.py:_flush():81] Current SDK version is 0.28.2
+2026-09-23 13:26:11,045 INFO    MainThread:57303 [wandb_setup.py:_flush():81] Configure stats pid to 57303
+2026-09-23 13:26:11,045 INFO    MainThread:57303 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-09-23 13:26:11,045 INFO    MainThread:57303 [wandb_init.py:setup_run_log_directory():739] Logging user logs to /workspace/Planet/wandb/run-20260923_132611-oqkvwlrs/logs/debug.log
+2026-09-23 13:26:11,045 INFO    MainThread:57303 [wandb_init.py:setup_run_log_directory():740] Logging internal logs to /workspace/Planet/wandb/run-20260923_132611-oqkvwlrs/logs/debug-internal.log
+2026-09-23 13:26:11,045 INFO    MainThread:57303 [wandb_init.py:init():783] calling init triggers
+2026-09-23 13:26:11,046 INFO    MainThread:57303 [wandb_init.py:init():788] wandb.init called with sweep_config: {}
+config: {'seed': 42, 'domain_name': 'cartpole', 'task_name': 'swingup', 'n_steps': 1000, 'n_update_steps': 100, 'n_action_repeat': 8, 'train_seq_len': 50, 'T': 1000, 'save_interval': 50, 'batch_size': 50, 'n_optimization_steps': 10, 'n_candidate_samples': 1000, 'action_dim': 1, 'horizon_len': 12, 'K': 100, 'resume': False, 'n_random_seeds': 5, 'setup_wandb': True, 'run_id': 1, 'hidden_dim': 200, 'latent_dim': 30, 'log_every': 10, 'debug': False, 'reward_scale': 10.0, 'step_to_load': 0, 'hf_repo_id': 'Marcorico/planet', '_wandb': {}}
+2026-09-23 13:26:11,046 INFO    MainThread:57303 [wandb_init.py:init():831] starting backend
+2026-09-23 13:26:11,046 INFO    MainThread:57303 [wandb_init.py:init():846] sending inform_init request
+2026-09-23 13:26:11,191 INFO    MainThread:57303 [wandb_init.py:init():851] backend started and connected
+2026-09-23 13:26:11,194 INFO    MainThread:57303 [wandb_init.py:init():921] updated telemetry
+2026-09-23 13:26:11,211 INFO    MainThread:57303 [wandb_init.py:init():944] communicating run to backend with 90.0 second timeout
+2026-09-23 13:26:13,422 INFO    MainThread:57303 [wandb_init.py:init():981] starting run threads in backend
+2026-09-23 13:26:13,580 INFO    MainThread:57303 [wandb_run.py:_console_start():2626] atexit reg
+2026-09-23 13:26:13,580 INFO    MainThread:57303 [wandb_run.py:_redirect():2476] redirect: wrap_raw
+2026-09-23 13:26:13,580 INFO    MainThread:57303 [wandb_run.py:_redirect():2545] Wrapping output streams.
+2026-09-23 13:26:13,580 INFO    MainThread:57303 [wandb_run.py:_redirect():2568] Redirects installed.
+2026-09-23 13:26:13,584 INFO    MainThread:57303 [wandb_init.py:init():1019] run started, returning control to user process
+2026-09-23 13:27:24,677 INFO    wandb-AsyncioManager-main:57303 [service_client.py:_forward_responses():122] [no run ID] Reached EOF.
+2026-09-23 13:27:24,677 INFO    wandb-AsyncioManager-main:57303 [mailbox.py:close():154] [no run ID] Closing mailbox, abandoning 2 handles.
+2026-09-23 13:27:24,678 ERROR   wandb-AsyncioManager-main:57303 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/run_messages.py", line 90, in loop
+    await asyncio_compat.race(
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 279, in race
+    async with open_task_group(race=True) as tg:
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/contextlib.py", line 217, in __aexit__
+    await anext(self.gen)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 241, in open_task_group
+    await task_group._wait_all(race=race, timeout=exit_timeout)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 181, in _wait_all
+    raise exc
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/run_messages.py", line 113, in _print_all
+    result = await handle.wait_async(timeout=None)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/mailbox_handle.py", line 127, in wait_async
+    response = await self._handle.wait_async(timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/response_handle.py", line 123, in wait_async
+    raise HandleAbandonedError()
+wandb.sdk.mailbox.mailbox_handle.HandleAbandonedError
