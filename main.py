@@ -105,7 +105,10 @@ def main(args: Namespace):
         for _ in tqdm(range(args.n_update_steps), desc="Running update steps"):
             batch = dataset.draw_batch()
             batch = {k: v.cuda() for (k,v) in batch.items()}
-            temp_metrics_dict = compute_loss(args, models, batch)
+
+            with torch.autocast(device_type="cuda", dtype=torch.float16):
+                temp_metrics_dict = compute_loss(args, models, batch)
+
             loss = temp_metrics_dict["total_loss"]
             optimizer.zero_grad()
             loss.backward()
@@ -144,10 +147,11 @@ def main(args: Namespace):
                 "reward": []
             }
             for _ in tqdm(range(math.ceil(args.T/args.n_action_repeat)), desc="Sampling"):
-                mu_s, sigma_s = models["encoder"](obs.unsqueeze(0).cuda(), h)
-                s = mu_s + torch.randn_like(sigma_s) * sigma_s
-                action = plan_action(args, models, s, h)
-                action += 0.3 * torch.randn_like(action)
+                with torch.autocast(device_type="cuda", dtype=torch.float16):
+                    mu_s, sigma_s = models["encoder"](obs.unsqueeze(0).cuda(), h)
+                    s = mu_s + torch.randn_like(sigma_s) * sigma_s
+                    action = plan_action(args, models, s, h)
+                    action += 0.3 * torch.randn_like(action)
 
                 reward = 0.0
                 for _ in range(args.n_action_repeat):

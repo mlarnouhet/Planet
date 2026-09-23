@@ -1,0 +1,36 @@
+Running update steps: 100%|██████████████████████████████████████████████████████████| 100/100 [01:14<00:00,  1.35it/s]
+2026-09-23 13:10:49,190 | INFO | Step 0 metrics:█████████████████████████████████████| 100/100 [01:14<00:00,  1.40it/s]
+2026-09-23 13:10:49,196 | INFO | obs_loss: 0.014236552715301514
+2026-09-23 13:10:49,196 | INFO | reward_loss: 0.6138214111328125
+2026-09-23 13:10:49,198 | INFO | kl_loss: 3.4920108032226564
+2026-09-23 13:10:49,199 | INFO | total_loss: 9.644461669921874
+2026-09-23 13:10:49,199 | INFO | encoder_grad_norm: 34.02220458984375
+2026-09-23 13:10:49,200 | INFO | det_state_model_grad_norm: 4.288171081542969
+2026-09-23 13:10:49,200 | INFO | stoch_state_model_grad_norm: 0.841511001586914
+2026-09-23 13:10:49,201 | INFO | obs_model_grad_norm: 0.27132946014404297
+2026-09-23 13:10:49,201 | INFO | reward_model_grad_norm: 13.0711865234375
+2026-09-23 13:10:49,201 | INFO | Rewards: 147.82115173339844
+Sampling: 100%|██████████████████████████████████████████████████████████████████████| 125/125 [00:39<00:00,  3.18it/s]
+Running update steps: 100%|██████████████████████████████████████████████████████████| 100/100 [01:10<00:00,  1.42it/s]
+Sampling: 100%|██████████████████████████████████████████████████████████████████████| 125/125 [00:40<00:00,  3.12it/s]
+Running update steps: 100%|██████████████████████████████████████████████████████████| 100/100 [01:23<00:00,  1.19it/s]
+Sampling: 100%|██████████████████████████████████████████████████████████████████████| 125/125 [00:42<00:00,  2.96it/s]
+Running update steps: 100%|██████████████████████████████████████████████████████████| 100/100 [01:18<00:00,  1.28it/s]
+Sampling: 100%|██████████████████████████████████████████████████████████████████████| 125/125 [00:39<00:00,  3.14it/s]
+Running update steps: 100%|██████████████████████████████████████████████████████████| 100/100 [01:18<00:00,  1.27it/s]
+Sampling: 100%|██████████████████████████████████████████████████████████████████████| 125/125 [00:39<00:00,  3.18it/s]
+Running update steps:  70%|█████████████████████████████████████████▎                 | 70/100 [00:49<00:21,  1.41it/s]
+Training:   0%|▎                                                                  | 5/1000 [10:42<35:31:07, 128.51s/it]
+Traceback (most recent call last):
+  File "/workspace/Planet/main.py", line 228, in <module>
+    args = parser.parse_args()
+    ^^^^^^^^^^
+  File "/workspace/Planet/main.py", line 111, in main
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/torch/_tensor.py", line 647, in backward
+    torch.autograd.backward(
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/torch/autograd/__init__.py", line 354, in backward
+    _engine_run_backward(
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
