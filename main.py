@@ -147,7 +147,7 @@ def main(args: Namespace):
                 "reward": []
             }
             for _ in tqdm(range(math.ceil(args.T/args.n_action_repeat)), desc="Sampling"):
-                with torch.autocast(device_type="cuda", dtype=torch.float16):
+                with torch.autocast(device_type="cuda", dtype=torch.bfloat16):
                     mu_s, sigma_s = models["encoder"](obs.unsqueeze(0).cuda(), h)
                     s = mu_s + torch.randn_like(sigma_s) * sigma_s
                     action = plan_action(args, models, s, h)
