@@ -1,0 +1,19 @@
+2026-09-23 12:19:23,236 INFO    MainThread:31523 [wandb_setup.py:_flush():81] Current SDK version is 0.28.2
+2026-09-23 12:19:23,236 INFO    MainThread:31523 [wandb_setup.py:_flush():81] Configure stats pid to 31523
+2026-09-23 12:19:23,236 INFO    MainThread:31523 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-09-23 12:19:23,237 INFO    MainThread:31523 [wandb_init.py:setup_run_log_directory():739] Logging user logs to /workspace/Planet/wandb/run-20260923_121923-868ica96/logs/debug.log
+2026-09-23 12:19:23,237 INFO    MainThread:31523 [wandb_init.py:setup_run_log_directory():740] Logging internal logs to /workspace/Planet/wandb/run-20260923_121923-868ica96/logs/debug-internal.log
+2026-09-23 12:19:23,237 INFO    MainThread:31523 [wandb_init.py:init():783] calling init triggers
+2026-09-23 12:19:23,237 INFO    MainThread:31523 [wandb_init.py:init():788] wandb.init called with sweep_config: {}
+config: {'seed': 42, 'domain_name': 'cartpole', 'task_name': 'swingup', 'n_steps': 1000, 'n_update_steps': 100, 'n_action_repeat': 8, 'train_seq_len': 50, 'T': 1000, 'save_interval': 100, 'batch_size': 50, 'n_optimization_steps': 10, 'n_candidate_samples': 1000, 'action_dim': 1, 'horizon_len': 12, 'K': 100, 'resume': False, 'n_random_seeds': 5, 'setup_wandb': True, 'run_id': 1, 'hidden_dim': 200, 'latent_dim': 30, 'log_every': 1, 'debug': True, 'reward_scale': 10.0, 'step_to_load': 0, 'hf_repo_id': 'Marcorico/planet', '_wandb': {}}
+2026-09-23 12:19:23,237 INFO    MainThread:31523 [wandb_init.py:init():831] starting backend
+2026-09-23 12:19:23,238 INFO    MainThread:31523 [wandb_init.py:init():846] sending inform_init request
+2026-09-23 12:19:23,379 INFO    MainThread:31523 [wandb_init.py:init():851] backend started and connected
+2026-09-23 12:19:23,383 INFO    MainThread:31523 [wandb_init.py:init():921] updated telemetry
+2026-09-23 12:19:23,406 INFO    MainThread:31523 [wandb_init.py:init():944] communicating run to backend with 90.0 second timeout
+2026-09-23 12:19:25,600 INFO    MainThread:31523 [wandb_init.py:init():981] starting run threads in backend
+2026-09-23 12:19:25,909 INFO    MainThread:31523 [wandb_run.py:_console_start():2626] atexit reg
+2026-09-23 12:19:25,909 INFO    MainThread:31523 [wandb_run.py:_redirect():2476] redirect: wrap_raw
+2026-09-23 12:19:25,910 INFO    MainThread:31523 [wandb_run.py:_redirect():2545] Wrapping output streams.
+2026-09-23 12:19:25,910 INFO    MainThread:31523 [wandb_run.py:_redirect():2568] Redirects installed.
+2026-09-23 12:19:25,925 INFO    MainThread:31523 [wandb_init.py:init():1019] run started, returning control to user process

@@ -1,3 +1,4 @@
+import os
 os.environ["MUJOCO_GL"] = "egl"
 os.environ["PYOPENGL_PLATFORM"] = "egl"
 
@@ -84,10 +85,10 @@ def main(args: Namespace):
 
                 dataset.add({k: torch.stack(v) for (k,v) in trajectory.items()})
 
-    for step in tqdm(range(start_step, args.n_steps), desc="Training"):
+    for model in models.values():
+        model.train()
 
-        for model in models.values():
-            model.train()
+    for step in tqdm(range(start_step, args.n_steps), desc="Training"):
 
         metrics_dict = {
             "obs_loss": 0.0,
@@ -116,15 +117,17 @@ def main(args: Namespace):
             
             optimizer.step()
 
-        metrics_dict = {k: v.item() / args.n_update_steps for (k, v) in metrics_dict}
+        metrics_dict = {k: v.item() / args.n_update_steps for (k, v) in metrics_dict.items()}
 
         if step % args.log_every == 0:
             logger.info(f"Step {step} metrics:")
+            reward = np.mean([dataset.trajectories[-i]['reward'].sum() for i in range(5)])
             for key, value in metrics_dict.items():
                 logger.info(f"{key}: {value}")
-            logger.info(f"Rewards: {[dataset.trajectories[-i]['reward'].sum() for i in range(5)]}")
+            logger.info(f"Rewards: {reward}")
             if args.use_wandb:
                 wandb.log({"step": step, **metrics_dict})
+                wandb.log({"step": step, "reward": reward})
         
         metrics_list.append(metrics_dict)
 
@@ -157,8 +160,6 @@ def main(args: Namespace):
 
                 h = models["det_state_model"](s, action.unsqueeze(0), h)
                 obs = preprocess_obs(time_step.observation["pixels"])
-
-
 
             dataset.add({k: torch.stack(v) for (k,v) in trajectory.items()})
 
