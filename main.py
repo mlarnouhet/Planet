@@ -30,6 +30,7 @@ def main(args: Namespace):
     for param in model.parameters()
     ]
     optimizer = torch.optim.Adam(parameters, lr=1e-3, weight_decay=1e-4)
+    scaler = torch.amp.GradScaler("cuda")
     metrics_list = []
 
     env = suite.load(domain_name=args.domain_name, task_name=args.task_name, visualize_reward=True)
@@ -106,19 +107,21 @@ def main(args: Namespace):
             batch = dataset.draw_batch()
             batch = {k: v.cuda() for (k,v) in batch.items()}
 
-            with torch.autocast(device_type="cuda", dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.fp16):
+            with torch.autocast(device_type="cuda", dtype=torch.float16):
                 temp_metrics_dict = compute_loss(args, models, batch)
 
             loss = temp_metrics_dict["total_loss"]
             optimizer.zero_grad()
-            loss.backward()
+            scaler.scale(loss).backward()
+            scaler.unscale_(optimizer)
 
             for (k, v) in temp_metrics_dict.items():
                 metrics_dict[k] += v
             for (model_name, model) in models.items():
                 metrics_dict[model_name + "_grad_norm"] += torch.nn.utils.clip_grad_norm_([param for param in model.parameters()], max_norm=1000.0)
             
-            optimizer.step()
+            scaler.step(optimizer)
+            scaler.update()
 
         metrics_dict = {k: v.item() / args.n_update_steps for (k, v) in metrics_dict.items()}
 
@@ -147,7 +150,7 @@ def main(args: Namespace):
                 "reward": []
             }
             for _ in tqdm(range(math.ceil(args.T/args.n_action_repeat)), desc="Sampling"):
-                with torch.autocast(device_type="cuda", dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.fp16):
+                with torch.autocast(device_type="cuda", dtype=torch.float16):
                     mu_s, sigma_s = models["encoder"](obs.unsqueeze(0).cuda(), h)
                     s = mu_s + torch.randn_like(sigma_s) * sigma_s
                     action = plan_action(args, models, s, h)
@@ -217,7 +220,7 @@ if __name__ == "__main__":
     parser.add_argument("--resume", type=bool, default=False)
     parser.add_argument("--n_random_seeds", type=int, default=5)
     parser.add_argument("--setup_wandb", type=bool, default=True)
-    parser.add_argument("--run_id", type=int, default=1)
+    parser.add_argument("--run_id", type=int, default=2)
     parser.add_argument("--hidden_dim", type=int, default=200)
     parser.add_argument("--latent_dim", type=int, default=30)
     parser.add_argument("--log_every", type=int, default=10)

@@ -1,0 +1,1674 @@
+2026-09-23 13:32:16,370 INFO    MainThread:59506 [wandb_setup.py:_flush():81] Current SDK version is 0.28.2
+2026-09-23 13:32:16,370 INFO    MainThread:59506 [wandb_setup.py:_flush():81] Configure stats pid to 59506
+2026-09-23 13:32:16,370 INFO    MainThread:59506 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-09-23 13:32:16,371 INFO    MainThread:59506 [wandb_init.py:setup_run_log_directory():739] Logging user logs to /workspace/Planet/wandb/run-20260923_133216-kpza3lr5/logs/debug.log
+2026-09-23 13:32:16,371 INFO    MainThread:59506 [wandb_init.py:setup_run_log_directory():740] Logging internal logs to /workspace/Planet/wandb/run-20260923_133216-kpza3lr5/logs/debug-internal.log
+2026-09-23 13:32:16,371 INFO    MainThread:59506 [wandb_init.py:init():783] calling init triggers
+2026-09-23 13:32:16,371 INFO    MainThread:59506 [wandb_init.py:init():788] wandb.init called with sweep_config: {}
+config: {'seed': 42, 'domain_name': 'cartpole', 'task_name': 'swingup', 'n_steps': 1000, 'n_update_steps': 100, 'n_action_repeat': 8, 'train_seq_len': 50, 'T': 1000, 'save_interval': 50, 'batch_size': 50, 'n_optimization_steps': 10, 'n_candidate_samples': 1000, 'action_dim': 1, 'horizon_len': 12, 'K': 100, 'resume': False, 'n_random_seeds': 5, 'setup_wandb': True, 'run_id': 1, 'hidden_dim': 200, 'latent_dim': 30, 'log_every': 10, 'debug': False, 'reward_scale': 10.0, 'step_to_load': 0, 'hf_repo_id': 'Marcorico/planet', '_wandb': {}}
+2026-09-23 13:32:16,371 INFO    MainThread:59506 [wandb_init.py:init():831] starting backend
+2026-09-23 13:32:16,371 INFO    MainThread:59506 [wandb_init.py:init():846] sending inform_init request
+2026-09-23 13:32:16,519 INFO    MainThread:59506 [wandb_init.py:init():851] backend started and connected
+2026-09-23 13:32:16,521 INFO    MainThread:59506 [wandb_init.py:init():921] updated telemetry
+2026-09-23 13:32:16,533 INFO    MainThread:59506 [wandb_init.py:init():944] communicating run to backend with 90.0 second timeout
+2026-09-23 13:32:17,945 INFO    MainThread:59506 [wandb_init.py:init():981] starting run threads in backend
+2026-09-23 13:32:18,092 INFO    MainThread:59506 [wandb_run.py:_console_start():2626] atexit reg
+2026-09-23 13:32:18,092 INFO    MainThread:59506 [wandb_run.py:_redirect():2476] redirect: wrap_raw
+2026-09-23 13:32:18,092 INFO    MainThread:59506 [wandb_run.py:_redirect():2545] Wrapping output streams.
+2026-09-23 13:32:18,093 INFO    MainThread:59506 [wandb_run.py:_redirect():2568] Redirects installed.
+2026-09-23 13:32:18,096 INFO    MainThread:59506 [wandb_init.py:init():1019] run started, returning control to user process
+2026-09-23 13:33:17,718 INFO    wandb-AsyncioManager-main:59506 [service_client.py:_forward_responses():122] [no run ID] Reached EOF.
+2026-09-23 13:33:17,719 INFO    wandb-AsyncioManager-main:59506 [mailbox.py:close():154] [no run ID] Closing mailbox, abandoning 2 handles.
+2026-09-23 13:33:17,719 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/run_messages.py", line 90, in loop
+    await asyncio_compat.race(
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 279, in race
+    async with open_task_group(race=True) as tg:
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/contextlib.py", line 217, in __aexit__
+    await anext(self.gen)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 241, in open_task_group
+    await task_group._wait_all(race=race, timeout=exit_timeout)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 181, in _wait_all
+    raise exc
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/run_messages.py", line 113, in _print_all
+    result = await handle.wait_async(timeout=None)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/mailbox_handle.py", line 127, in wait_async
+    response = await self._handle.wait_async(timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/response_handle.py", line 123, in wait_async
+    raise HandleAbandonedError()
+wandb.sdk.mailbox.mailbox_handle.HandleAbandonedError
+2026-09-23 13:33:17,998 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,000 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,001 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,002 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,003 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,004 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,005 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,006 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,008 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,009 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,010 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,012 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,013 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,014 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,017 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,018 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,020 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,021 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,022 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,023 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,024 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,025 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,026 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,027 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,028 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,029 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,030 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,032 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,033 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,034 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,035 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,036 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,037 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,038 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,039 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,040 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,041 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,042 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,043 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,044 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,045 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,046 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,047 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,048 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,049 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,050 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,051 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,052 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,053 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,054 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,055 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,057 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,060 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,061 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,062 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,063 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,064 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,065 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,066 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,067 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,068 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,069 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,071 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,071 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,072 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,073 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,075 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,077 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,078 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,079 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,080 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,081 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,082 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,083 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,084 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,085 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,086 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,087 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,088 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,089 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,090 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,091 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,093 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,098 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,099 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,100 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,100 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,101 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,102 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,104 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,104 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,105 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,106 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,107 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,107 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-09-23 13:33:18,118 ERROR   wandb-AsyncioManager-main:59506 [asyncio_manager.py:fn_wrap_exceptions():197] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_manager.py", line 195, in fn_wrap_exceptions
+    await fn()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 42, in publish
+    await self._send_server_request(request)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 75, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 84, in _send_server_request
+    await self._drain_writer()
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/service/service_client.py", line 92, in _drain_writer
+    await self._writer.drain()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 392, in drain
+    await self._protocol._drain_helper()
+  File "/.uv/python_install/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/asyncio/streams.py", line 166, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost

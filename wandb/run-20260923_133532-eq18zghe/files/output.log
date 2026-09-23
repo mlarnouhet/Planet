@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/workspace/Planet/main.py", line 232, in <module>
+    main(args)
+  File "/workspace/Planet/main.py", line 79, in main
+    time_step = env.step(action)
+                ^^^^^^^^^^^^^^^^
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/dm_control/suite/wrappers/pixels.py", line 93, in step
+    return self._add_pixel_observation(time_step)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Planet/.venv/lib/python3.11/site-packages/dm_control/suite/wrappers/pixels.py", line 110, in _add_pixel_observation
+    pixels = self._env.physics.render(**self._render_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
