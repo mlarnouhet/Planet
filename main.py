@@ -1,0 +1,207 @@
+import argparse
+from argparse import Namespace
+import math
+import numpy as np
+from tqdm import tqdm
+import torch
+from torch.distributions import Independent, Normal
+from dm_control import suite
+from dm_control.suite.wrappers import pixels
+from utils import setup_logs, setup_wnb, setup_dirs, compute_loss, preprocess_obs, set_seed
+from cem import plan_action
+from dataset import PlaNetDataset
+from models import get_models
+
+def main(args: Namespace):
+
+    logger = setup_logs(args)
+    dataset = PlaNetDataset(args)
+    models = get_models(args)
+    for model in models.values():
+        model.cuda()
+    parameters = [
+    param
+    for model in list(models.values())
+    for param in model.parameters()
+    ]
+    optimizer = torch.optim.Adam(parameters, lr=1e-3, weight_decay=1e-4)
+    loss_list = []
+
+    env = suite.load(domain_name=args.domain_name, task_name=args.task_name, visualize_reward=True)
+    env = pixels.Wrapper(env)
+    spec = env.action_spec()
+
+    if args.resume:
+        checkpoint_dir = f"checkpoints/run_{args.run_id}/checkpoint_{args.run_id}_{args.domain_name}_{args.task_name}_step_{args.step_to_load}.pt"
+        logger.info(f"Loading checkpoint {checkpoint_dir}")
+        checkpoint = torch.load(checkpoint_dir)
+        models["encoder"].load_state_dict(checkpoint["encoder"])
+        models["det_state_model"].load_state_dict(checkpoint["det_state_model"])
+        models["stoch_state_model"].load_state_dict(checkpoint["stoch_state_model"])  
+        models["obs_model"].load_state_dict(checkpoint["obs_model"])
+        models["reward_model"].load_state_dict(checkpoint["reward_model"]) 
+        optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+        dataset.trajectories = checkpoint["trajectories"]
+        loss_list = checkpoint["loss_list"]
+        start_step = checkpoint["step"]+1
+        logger.info(f"Resuming run {args.run_id} on {args.domain_name}-{args.task_name} at step {start_step}")
+        if args.setup_wandb:
+            wandb_run_id = checkpoint["wandb_run_id"]
+            _ = setup_wnb(args, wandb_run_id)
+    else:
+        if args.setup_wandb:
+            wandb_run_id = setup_wnb(args)
+
+        start_step = 0 
+        if args.debug:
+            import pickle
+            with open("debug/dataset.pkl", "rb") as f:
+                dataset = pickle.load(f)
+        else:
+            for _ in range(args.n_random_seeds):
+                trajectory = {
+                    "observation": [],
+                    "action": [],
+                    "reward": []
+                }
+                time_step = env.reset()
+                for _ in range(math.ceil(args.T/args.n_action_repeat)):
+                    obs = preprocess_obs(time_step.observation["pixels"])
+                    action = np.random.uniform(spec.minimum, spec.maximum, spec.shape).astype(np.float32)
+
+                    reward = 0.0
+                    for _ in range(args.n_action_repeat):
+                        time_step = env.step(action)
+                        reward += time_step.reward.astype(np.float32) if time_step.reward is not None else 0.0
+
+                    trajectory["observation"].append(obs)
+                    trajectory["action"].append(torch.tensor(action))
+                    trajectory["reward"].append(torch.tensor(reward))
+
+                dataset.add({k: torch.stack(v) for (k,v) in trajectory.items()})
+
+    for step in tqdm(range(start_step, args.n_steps), desc="Training"):
+
+        for model in models.values():
+            model.train()
+
+        step_obs_loss = 0.0
+        step_reward_loss = 0.0
+        step_kl_loss = 0.0
+        step_loss = 0.0
+        for _ in tqdm(range(args.n_update_steps), desc="Running update steps"):
+            batch = dataset.draw_batch()
+            batch = {k: v.cuda() for (k,v) in batch.items()}
+            loss_dict = compute_loss(args, models, batch)
+            step_obs_loss += loss_dict["obs_loss"]
+            step_reward_loss += loss_dict["reward_loss"]
+            step_kl_loss += loss_dict["kl_loss"]
+            step_loss += loss_dict["loss"]
+            loss = loss_dict["loss"]
+            optimizer.zero_grad()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(parameters, max_norm=1000.0)
+            optimizer.step()
+
+        loss_dict = {
+            "obs_loss": step_obs_loss.item() / args.n_update_steps,
+            "reward_loss": step_reward_loss.item() / args.n_update_steps,
+            "kl_loss": step_kl_loss.item() / args.n_update_steps,
+            "loss": step_loss.item() / args.n_update_steps
+            }
+
+        if step % args.log_loss_interval == 0:
+            logger.info(
+                f"Step: {step}, "
+                f"obs_loss: {loss_dict['obs_loss']}, "
+                f"reward_loss: {loss_dict['reward_loss']}, "
+                f"kl_loss: {loss_dict['kl_loss']}, "
+                f"total_loss: {loss_dict['loss']}"
+            )
+        loss_list.append(loss_dict)
+
+        with torch.no_grad():
+            for model in models.values():
+                model.eval()
+
+            time_step = env.reset()
+            obs = preprocess_obs(time_step.observation["pixels"])
+            h = torch.zeros((1, args.hidden_dim)).cuda()
+            trajectory = {
+                "observation": [],
+                "action": [],
+                "reward": []
+            }
+            for _ in tqdm(range(math.ceil(args.T/args.n_action_repeat)), desc="Sampling"):
+                mu_s, sigma_s = models["encoder"](obs.unsqueeze(0).cuda(), h)
+                s = mu_s + torch.randn_like(sigma_s) * sigma_s
+                action = plan_action(args, models, s, h)
+                action += 0.3 * torch.randn_like(action)
+
+                reward = 0.0
+                for _ in range(args.n_action_repeat):
+                    time_step = env.step(action.cpu().numpy())
+                    reward += (time_step.reward.astype(np.float32) if time_step.reward is not None else 0.0)
+
+                trajectory["observation"].append(obs)
+                trajectory["action"].append(action.cpu())
+                trajectory["reward"].append(torch.tensor(reward))
+
+                h = models["det_state_model"](s, action.unsqueeze(0), h)
+                obs = preprocess_obs(time_step.observation["pixels"])
+
+
+
+            dataset.add({k: torch.stack(v) for (k,v) in trajectory.items()})
+
+        if step % args.save_interval == 0:
+            checkpoint_dir = f"checkpoints/run_{args.run_id}/checkpoint_{args.run_id}_{args.domain_name}_{args.task_name}_step_{step}.pt"
+            checkpoint = {
+                "encoder": models["encoder"].state_dict(),
+                "det_state_model": models["det_state_model"].state_dict(),
+                "stoch_state_model": models["stoch_state_model"].state_dict(),   
+                "obs_model": models["obs_model"].state_dict(),
+                "reward_model": models["reward_model"].state_dict(),       
+                "optimizer_state_dict": optimizer.state_dict(),
+                "trajectories": dataset.trajectories,
+                "loss_list": loss_list,
+                "step": step,
+                "wandb_run_id": wandb_run_id if args.setup_wandb else "" 
+            }
+            torch.save(checkpoint, checkpoint_dir)
+        
+
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--domain_name", type=str, default="cartpole")
+    parser.add_argument("--task_name", type=str, default="swingup")
+    parser.add_argument("--n_steps", type=int, default=1000)
+    parser.add_argument("--n_update_steps", type=int, default=2) #100
+    parser.add_argument("--n_action_repeat", type=int, default=8)
+    parser.add_argument("--train_seq_len", type=int, default=50) #50
+    parser.add_argument("--T", type=int, default=100) #1000
+    parser.add_argument("--save_interval", type=int, default=100)
+    parser.add_argument("--batch_size", type=int, default=50)
+    parser.add_argument("--n_optimization_steps", type=int, default=10)
+    parser.add_argument("--n_candidate_samples", type=int, default=1000)
+    parser.add_argument("--action_dim", type=int, default=1)
+    parser.add_argument("--horizon_len", type=int, default=12)
+    parser.add_argument("--K", type=int, default=100)
+    parser.add_argument("--resume", type=bool, default=False)
+    parser.add_argument("--n_random_seeds", type=int, default=5)
+    parser.add_argument("--setup_wandb", type=bool, default=False)
+    parser.add_argument("--run_id", type=int, default=1)
+    parser.add_argument("--hidden_dim", type=int, default=200)
+    parser.add_argument("--latent_dim", type=int, default=30)
+    parser.add_argument("--log_loss_interval", type=int, default=1)
+    parser.add_argument("--debug", type=int, default=True)
+    parser.add_argument("--reward_scale", type=float, default=10.0)
+    parser.add_argument("--step_to_load", type=int, default=0)
+    args = parser.parse_args()
+
+    set_seed(args.seed)
+    setup_dirs(args)
+    main(args)
