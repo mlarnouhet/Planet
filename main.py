@@ -106,7 +106,7 @@ def main(args: Namespace):
             batch = dataset.draw_batch()
             batch = {k: v.cuda() for (k,v) in batch.items()}
 
-            with torch.autocast(device_type="cuda", dtype=torch.float16):
+            with torch.autocast(device_type="cuda", dtype=torch.bfloat16):
                 temp_metrics_dict = compute_loss(args, models, batch)
 
             loss = temp_metrics_dict["total_loss"]
