@@ -1,3 +1,6 @@
+os.environ["MUJOCO_GL"] = "egl"
+os.environ["PYOPENGL_PLATFORM"] = "egl"
+
 import argparse
 from argparse import Namespace
 import math
@@ -119,7 +122,7 @@ def main(args: Namespace):
             logger.info(f"Step {step} metrics:")
             for key, value in metrics_dict.items():
                 logger.info(f"{key}: {value}")
-            logger.info(f"Rewards: {[dataset.trajectories[-i]["reward"].sum() for i in range(5)]}")
+            logger.info(f"Rewards: {[dataset.trajectories[-i]['reward'].sum() for i in range(5)]}")
             if args.use_wandb:
                 wandb.log({"step": step, **metrics_dict})
         
@@ -195,10 +198,10 @@ if __name__ == "__main__":
     parser.add_argument("--domain_name", type=str, default="cartpole")
     parser.add_argument("--task_name", type=str, default="swingup")
     parser.add_argument("--n_steps", type=int, default=1000)
-    parser.add_argument("--n_update_steps", type=int, default=2) #100
+    parser.add_argument("--n_update_steps", type=int, default=100) #100
     parser.add_argument("--n_action_repeat", type=int, default=8)
     parser.add_argument("--train_seq_len", type=int, default=50) #50
-    parser.add_argument("--T", type=int, default=100) #1000
+    parser.add_argument("--T", type=int, default=1000) #1000
     parser.add_argument("--save_interval", type=int, default=100)
     parser.add_argument("--batch_size", type=int, default=50)
     parser.add_argument("--n_optimization_steps", type=int, default=10)
@@ -208,7 +211,7 @@ if __name__ == "__main__":
     parser.add_argument("--K", type=int, default=100)
     parser.add_argument("--resume", type=bool, default=False)
     parser.add_argument("--n_random_seeds", type=int, default=5)
-    parser.add_argument("--setup_wandb", type=bool, default=False)
+    parser.add_argument("--setup_wandb", type=bool, default=True)
     parser.add_argument("--run_id", type=int, default=1)
     parser.add_argument("--hidden_dim", type=int, default=200)
     parser.add_argument("--latent_dim", type=int, default=30)
