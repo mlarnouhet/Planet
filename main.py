@@ -125,7 +125,7 @@ def main(args: Namespace):
             for key, value in metrics_dict.items():
                 logger.info(f"{key}: {value}")
             logger.info(f"Rewards: {reward}")
-            if args.use_wandb:
+            if args.setup_wandb:
                 wandb.log({"step": step, **metrics_dict})
                 wandb.log({"step": step, "reward": reward})
         

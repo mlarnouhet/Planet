@@ -1,0 +1,40 @@
+{
+  "os": "Linux-5.15.0-191-generic-x86_64-with-glibc2.39",
+  "python": "CPython 3.11.16",
+  "startedAt": "2026-09-23T13:00:20.529222Z",
+  "program": "/workspace/Planet/main.py",
+  "codePath": "main.py",
+  "codePathLocal": "main.py",
+  "git": {
+    "remote": "https://github.com/mlarnouhet/Planet.git",
+    "commit": "a0b11efc9b9255808e976e8ba6c9dea4189c764a"
+  },
+  "email": "mlarnouhet@gmail.com",
+  "root": "/workspace/Planet",
+  "host": "efdb18286b38",
+  "executable": "/workspace/Planet/.venv/bin/python",
+  "cpu_count": 36,
+  "cpu_count_logical": 72,
+  "gpu": "Tesla V100-PCIE-32GB",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "17179869184",
+      "used": "9600344064"
+    }
+  },
+  "memory": {
+    "total": "168837812224"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "Tesla V100-PCIE-32GB",
+      "memoryTotal": "34359738368",
+      "cudaCores": 5120,
+      "architecture": "Volta",
+      "uuid": "GPU-e5c2bf17-cf24-13b2-24d7-7b0640cd38f9"
+    }
+  ],
+  "cudaVersion": "12.8",
+  "writerId": "adcx8z9rw4vlaetjhvhu9rxzor7zasr4"
+}
