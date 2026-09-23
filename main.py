@@ -4,7 +4,7 @@ import math
 import numpy as np
 from tqdm import tqdm
 import torch
-from torch.distributions import Independent, Normal
+from huggingface_hub import HfApi
 from dm_control import suite
 from dm_control.suite.wrappers import pixels
 from utils import setup_logs, setup_wnb, setup_dirs, compute_loss, preprocess_obs, set_seed
@@ -169,6 +169,17 @@ def main(args: Namespace):
                 "wandb_run_id": wandb_run_id if args.setup_wandb else "" 
             }
             torch.save(checkpoint, checkpoint_dir)
+
+            api = HfApi()
+            api.create_repo(repo_id=args.hf_repo_id, private=True, exist_ok=True)
+            upload_future_model = api.upload_file(
+                repo_id=args.hf_repo_id,
+                path_or_fileobj=checkpoint_dir,
+                path_in_repo=f"run_{self.run_id}_{args.domain_name}_{args.task_name}/epoch_{epoch}/models.pt",
+                commit_message=f"Checkpoint: run {args.domain_name}_{args.task_name}_{self.run_id}, epoch {epoch}",
+                run_as_future=True,
+            )
+            upload_future_data.result()
         
 
 
@@ -200,6 +211,7 @@ if __name__ == "__main__":
     parser.add_argument("--debug", type=int, default=True)
     parser.add_argument("--reward_scale", type=float, default=10.0)
     parser.add_argument("--step_to_load", type=int, default=0)
+    parser.add_argument("--hf_repo_id", type=str, default="Marcorico/planet")
     args = parser.parse_args()
 
     set_seed(args.seed)
