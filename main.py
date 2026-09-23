@@ -25,7 +25,7 @@ def main(args: Namespace):
     for param in model.parameters()
     ]
     optimizer = torch.optim.Adam(parameters, lr=1e-3, weight_decay=1e-4)
-    loss_list = []
+    metrics_list = []
 
     env = suite.load(domain_name=args.domain_name, task_name=args.task_name, visualize_reward=True)
     env = pixels.Wrapper(env)
@@ -42,7 +42,7 @@ def main(args: Namespace):
         models["reward_model"].load_state_dict(checkpoint["reward_model"]) 
         optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
         dataset.trajectories = checkpoint["trajectories"]
-        loss_list = checkpoint["loss_list"]
+        metrics_list = checkpoint["metrics_list"]
         start_step = checkpoint["step"]+1
         logger.info(f"Resuming run {args.run_id} on {args.domain_name}-{args.task_name} at step {start_step}")
         if args.setup_wandb:
@@ -85,40 +85,53 @@ def main(args: Namespace):
         for model in models.values():
             model.train()
 
-        step_obs_loss = 0.0
-        step_reward_loss = 0.0
-        step_kl_loss = 0.0
-        step_loss = 0.0
+        metrics_dict = {
+            "step_obs_loss" = 0.0,
+            "step_reward_loss" = 0.0,
+            "step_kl_loss" = 0.0,
+            "step_loss" = 0.0,
+            "encoder_grad_norm" = 0.0,
+            "det_state_model_grad_norm" = 0.0,
+            "stoch_state_model_grad_norm" = 0.0,
+            "obs_model_grad_norm" = 0.0,
+            "reward_model_grad_norm" = 0.0,
+            "reward" = 0.0,
+            "traj_length"= 0.0
+        }
+
+
         for _ in tqdm(range(args.n_update_steps), desc="Running update steps"):
             batch = dataset.draw_batch()
             batch = {k: v.cuda() for (k,v) in batch.items()}
-            loss_dict = compute_loss(args, models, batch)
-            step_obs_loss += loss_dict["obs_loss"]
-            step_reward_loss += loss_dict["reward_loss"]
-            step_kl_loss += loss_dict["kl_loss"]
-            step_loss += loss_dict["loss"]
-            loss = loss_dict["loss"]
+            metrics_dict = compute_loss(args, models, batch)
+            step_obs_loss += metrics_dict["obs_loss"]
+            step_reward_loss += metrics_dict["reward_loss"]
+            step_kl_loss += metrics_dict["kl_loss"]
+            step_loss += metrics_dict["loss"]
+            loss = metrics_dict["loss"]
             optimizer.zero_grad()
             loss.backward()
-            torch.nn.utils.clip_grad_norm_(parameters, max_norm=1000.0)
+
+            torch.nn.utils.clip_grad_norm_([param for param in model.parameters()], max_norm=1000.0)
+
+            grad_norm = torch.nn.utils.get_total_norm([p.grad for p in model.parameters() if p.grad is not None], norm_type=2.0)
             optimizer.step()
 
-        loss_dict = {
+        metrics_dict = {
             "obs_loss": step_obs_loss.item() / args.n_update_steps,
             "reward_loss": step_reward_loss.item() / args.n_update_steps,
             "kl_loss": step_kl_loss.item() / args.n_update_steps,
             "loss": step_loss.item() / args.n_update_steps
             }
 
-        if step % args.log_loss_interval == 0:
-            logger.info(
-                f"Step: {step}, "
-                f"obs_loss: {loss_dict['obs_loss']}, "
-                f"reward_loss: {loss_dict['reward_loss']}, "
-                f"kl_loss: {loss_dict['kl_loss']}, "
-                f"total_loss: {loss_dict['loss']}"
-            )
-        loss_list.append(loss_dict)
+        if step % args.log_every == 0:
+        self.logger.info(f"Step {step} metrics:")
+        for key, value in metrics_dict.items():
+            self.logger.info(f"{key}: {value}")
+            if self.use_wandb:
+                wandb.log({"step": step, **metrics_dict})
+        
+        metrics_list.append(metrics_dict)
 
         with torch.no_grad():
             for model in models.values():
@@ -164,7 +177,7 @@ def main(args: Namespace):
                 "reward_model": models["reward_model"].state_dict(),       
                 "optimizer_state_dict": optimizer.state_dict(),
                 "trajectories": dataset.trajectories,
-                "loss_list": loss_list,
+                "metrics_list": metrics_list,
                 "step": step,
                 "wandb_run_id": wandb_run_id if args.setup_wandb else "" 
             }
@@ -175,8 +188,8 @@ def main(args: Namespace):
             upload_future_model = api.upload_file(
                 repo_id=args.hf_repo_id,
                 path_or_fileobj=checkpoint_dir,
-                path_in_repo=f"run_{self.run_id}_{args.domain_name}_{args.task_name}/epoch_{epoch}/models.pt",
-                commit_message=f"Checkpoint: run {args.domain_name}_{args.task_name}_{self.run_id}, epoch {epoch}",
+                path_in_repo=f"run_{self.run_id}_{args.domain_name}_{args.task_name}/step{step}/models.pt",
+                commit_message=f"Checkpoint: run {args.domain_name}_{args.task_name}_{self.run_id}, step {step}",
                 run_as_future=True,
             )
             upload_future_data.result()
@@ -207,7 +220,7 @@ if __name__ == "__main__":
     parser.add_argument("--run_id", type=int, default=1)
     parser.add_argument("--hidden_dim", type=int, default=200)
     parser.add_argument("--latent_dim", type=int, default=30)
-    parser.add_argument("--log_loss_interval", type=int, default=1)
+    parser.add_argument("--log_every", type=int, default=1)
     parser.add_argument("--debug", type=int, default=True)
     parser.add_argument("--reward_scale", type=float, default=10.0)
     parser.add_argument("--step_to_load", type=int, default=0)

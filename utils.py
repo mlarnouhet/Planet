@@ -67,8 +67,8 @@ def setup_wnb(args: Namespace, wandb_run_id: str | None = None) -> str:
         name=f"run__{args.domain_name}-{args.task_name}_{args.run_id}",
         config=vars(args),
     )
-    wandb.define_metric("epoch")
-    wandb.define_metric("*", step_metric="epoch")
+    wandb.define_metric("step")
+    wandb.define_metric("*", step_metric="step")
     return run.id
 
 
