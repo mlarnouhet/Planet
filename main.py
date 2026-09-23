@@ -163,7 +163,7 @@ def main(args: Namespace):
 
             dataset.add({k: torch.stack(v) for (k,v) in trajectory.items()})
 
-        if step % args.save_interval == 0:
+        if (step % args.save_interval == 0) and (step > start_step):
             checkpoint_dir = f"checkpoints/run_{args.run_id}/checkpoint_{args.run_id}_{args.domain_name}_{args.task_name}_step_{step}.pt"
             checkpoint = {
                 "encoder": models["encoder"].state_dict(),
@@ -203,7 +203,7 @@ if __name__ == "__main__":
     parser.add_argument("--n_action_repeat", type=int, default=8)
     parser.add_argument("--train_seq_len", type=int, default=50) #50
     parser.add_argument("--T", type=int, default=1000) #1000
-    parser.add_argument("--save_interval", type=int, default=100)
+    parser.add_argument("--save_interval", type=int, default=50)
     parser.add_argument("--batch_size", type=int, default=50)
     parser.add_argument("--n_optimization_steps", type=int, default=10)
     parser.add_argument("--n_candidate_samples", type=int, default=1000)
@@ -216,8 +216,8 @@ if __name__ == "__main__":
     parser.add_argument("--run_id", type=int, default=1)
     parser.add_argument("--hidden_dim", type=int, default=200)
     parser.add_argument("--latent_dim", type=int, default=30)
-    parser.add_argument("--log_every", type=int, default=1)
-    parser.add_argument("--debug", type=int, default=True)
+    parser.add_argument("--log_every", type=int, default=10)
+    parser.add_argument("--debug", type=int, default=False)
     parser.add_argument("--reward_scale", type=float, default=10.0)
     parser.add_argument("--step_to_load", type=int, default=0)
     parser.add_argument("--hf_repo_id", type=str, default="Marcorico/planet")
