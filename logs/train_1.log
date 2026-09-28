@@ -1,0 +1,13 @@
+2026-09-28 12:03:38,757 | INFO | Animation.save using <class 'matplotlib.animation.HTMLWriter'>
+2026-09-28 12:06:13,941 | INFO | Animation.save using <class 'matplotlib.animation.HTMLWriter'>
+2026-09-28 12:23:23,600 | INFO | Step 0 metrics:
+2026-09-28 12:23:23,636 | INFO | obs_loss: 0.21496716141700745
+2026-09-28 12:23:23,637 | INFO | reward_loss: 3.4179954528808594
+2026-09-28 12:23:23,638 | INFO | kl_loss: 3.8118951320648193
+2026-09-28 12:23:23,638 | INFO | total_loss: 38.206817626953125
+2026-09-28 12:23:23,638 | INFO | encoder_grad_norm: 26.168458938598633
+2026-09-28 12:23:23,639 | INFO | det_state_model_grad_norm: 3.0208590030670166
+2026-09-28 12:23:23,639 | INFO | stoch_state_model_grad_norm: 2.6782419681549072
+2026-09-28 12:23:23,640 | INFO | obs_model_grad_norm: 2.444680690765381
+2026-09-28 12:23:23,640 | INFO | reward_model_grad_norm: 36.19638442993164
+2026-09-28 12:23:23,641 | INFO | Rewards: 141.05319213867188

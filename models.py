@@ -25,14 +25,16 @@ class ConvModel(nn.Module):
         self.conv2 = ConvUnit(in_channels=n_channels, out_channels=n_channels*2, kernel_size=3, stride=2)
         self.conv3 = ConvUnit(in_channels=n_channels*2, out_channels=n_channels*4, kernel_size=3, stride=2)
         self.conv4 = ConvUnit(in_channels=n_channels*4, out_channels=n_channels*8, kernel_size=3, stride=2)
-        self.lin_out = nn.Linear(8*8*256, out_features=latent_dim, bias=True)
+        self.conv5 = ConvUnit(in_channels=n_channels*8, out_channels=n_channels*8, kernel_size=3, stride=2)
+        self.lin_out = nn.Linear(4*4*256, out_features=latent_dim, bias=True)
 
     def forward(self, x) -> torch.Tensor:
         x1 = self.conv1(x)
         x2 = self.conv2(x1)
         x3 = self.conv3(x2)
         x4 = self.conv4(x3)
-        out = self.lin_out(torch.flatten(x4, start_dim=1))
+        x5 = self.conv5(x4)
+        out = self.lin_out(torch.flatten(x5, start_dim=1))
         return out
 
 class EncoderModel(nn.Module):
@@ -99,19 +101,21 @@ class DeconvUnit(nn.Module):
 class ObservationModel(nn.Module):
     def __init__(self, hidden_dim: int, latent_dim: int, n_channels: int = 32):
         super().__init__()
-        self.lin_in = nn.Linear(in_features=hidden_dim+latent_dim, out_features=8*8*256, bias=True)
-        self.deconv1 = DeconvUnit(in_channels=n_channels*8, out_channels=n_channels*4, kernel_size=3, stride=2)
-        self.deconv2 = DeconvUnit(in_channels=n_channels*4, out_channels=n_channels*2, kernel_size=3, stride=2)
-        self.deconv3 = DeconvUnit(in_channels=n_channels*2, out_channels=n_channels*1, kernel_size=3, stride=2)
+        self.lin_in = nn.Linear(in_features=hidden_dim+latent_dim, out_features=4*4*256, bias=True)
+        self.deconv1 = DeconvUnit(in_channels=n_channels*8, out_channels=n_channels*8, kernel_size=3, stride=2)
+        self.deconv2 = DeconvUnit(in_channels=n_channels*8, out_channels=n_channels*4, kernel_size=3, stride=2)
+        self.deconv3 = DeconvUnit(in_channels=n_channels*4, out_channels=n_channels*2, kernel_size=3, stride=2)
+        self.deconv4 = DeconvUnit(in_channels=n_channels*2, out_channels=n_channels*1, kernel_size=3, stride=2)
         self.conv_out = nn.Conv2d(in_channels=32, out_channels=3, kernel_size=3, stride=1, padding=1)
         
     def forward(self, h, s) -> torch.Tensor:
         cat_latent = torch.cat([h, s], dim=-1)
-        z = self.lin_in(cat_latent).view(-1, 256, 8, 8)
+        z = self.lin_in(cat_latent).view(-1, 256, 4, 4)
         z1 = self.deconv1(z)
         z2 = self.deconv2(z1)
         z3 = self.deconv3(z2)
-        mu = self.conv_out(z3)
+        z4 = self.deconv4(z3)
+        mu = self.conv_out(z4)
         return mu
 
 class RewardModel(nn.Module):

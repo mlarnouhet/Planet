@@ -140,3 +140,52 @@ def preprocess_obs(obs: np.ndarray) -> torch.Tensor:
     obs = obs - 0.5
 
     return obs
+
+
+
+# import numpy as np
+# import torch
+# import cv2
+# import time
+
+
+# def display_video(frames, fps=20):
+#     """
+#     Display a list of frames in an OpenCV window.
+
+#     Each frame:
+#         shape (3, 64, 64)
+#         values in [-0.5, 0.5]
+
+#     Press 'q' to quit.
+#     """
+
+#     delay = 1.0 / fps
+
+#     for frame in frames:
+#         if isinstance(frame, torch.Tensor):
+#             frame = frame.detach().cpu().numpy()
+
+#         # CHW -> HWC
+#         frame = np.transpose(frame, (1, 2, 0))
+
+#         # [-0.5, 0.5] -> [0, 255]
+#         frame = (frame + 0.5) * 255.0
+#         frame = np.clip(frame, 0, 255).astype(np.uint8)
+
+#         # RGB -> BGR for OpenCV
+#         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+
+#         # Optional: enlarge for easier viewing
+#         frame = cv2.resize(
+#             frame,
+#             (512, 512),
+#             interpolation=cv2.INTER_NEAREST,
+#         )
+
+#         cv2.imshow("PlaNet rollout", frame)
+
+#         if cv2.waitKey(int(delay * 1000)) & 0xFF == ord("q"):
+#             break
+
+#     cv2.destroyAllWindows()
