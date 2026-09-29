@@ -11,8 +11,7 @@ import numpy as np
 import wandb
 import torch
 import torch.nn as nn
-from torch.distributions import Independent, Normal
-from torch.distributions.kl import kl_divergence
+from dm_control.rl.control import Environment
 
 
 def set_seed(seed: int) -> None:
@@ -107,7 +106,7 @@ def compute_loss(args: Namespace, models: Dict[str, nn.Module], batch: Dict[str,
             reward_loss = mse_loss(pred_reward.squeeze(1), reward)
         else:
             reward_loss = torch.tensor(0.0, device="cuda")
-        obs_loss = mse_loss(pred_obs, observation)
+        obs_loss = 1/2 * ((pred_obs - observation)**2).flatten(start_dim=1).sum(dim=1).mean()
         kl_per_dimension = torch.log(sigma_s) - torch.log(sigma_e) + 1/2 * (sigma_e**2 + (mu_e - mu_s)**2) / sigma_s**2 - 1/2
         kl = kl_per_dimension.sum(dim=-1)
         kl_loss = kl.clamp_min(3.0).mean()
@@ -140,6 +139,14 @@ def preprocess_obs(obs: np.ndarray) -> torch.Tensor:
     obs = obs - 0.5
 
     return obs
+
+def render_obs(env: Environment) -> torch.Tensor:
+    image = env.physics.render(
+        height=64,
+        width=64,
+        camera_id=0,  
+    )
+    return preprocess_obs(image)
 
 
 

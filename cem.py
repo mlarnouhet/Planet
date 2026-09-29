@@ -31,13 +31,11 @@ def plan_action(args: Namespace, models: list[nn.Module], s: torch.Tensor, h: to
         exp_mu_q = mu_q.unsqueeze(0).expand(args.n_candidate_samples, -1)
         exp_sigma_q = sigma_q.unsqueeze(0).expand(args.n_candidate_samples, -1)
         actions = exp_mu_q + torch.randn_like(exp_sigma_q) * exp_sigma_q
+        actions.clamp_(-1.0, 1.0)
         rewards = evaluate(args, actions, models, s, h)
-        actions = torch.unbind(actions, dim=0)
-        rewards = rewards.cpu().numpy()
-        order = sorted(range(len(rewards)), key=lambda i: rewards[i], reverse=True)
-        actions = [actions[i] for i in order]
-        top_k_actions = torch.stack(actions[:100])
+        top_k_indices = rewards.squeeze(-1).topk(args.K, sorted=False).indices
+        top_k_actions = actions[top_k_indices]
         mu_q = torch.mean(top_k_actions, dim=0) 
-        sigma_q = torch.abs(top_k_actions - mu_q.unsqueeze(0).expand(100, -1)).sum(dim=0) / 99
+        sigma_q = torch.abs(top_k_actions - mu_q.unsqueeze(0).expand(args.K, -1)).sum(dim=0) / (args.K-1)
 
     return mu_q[:args.action_dim]

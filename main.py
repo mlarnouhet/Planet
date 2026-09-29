@@ -11,8 +11,7 @@ import torch
 from huggingface_hub import HfApi
 import wandb
 from dm_control import suite
-from dm_control.suite.wrappers import pixels
-from utils import setup_logs, setup_wnb, setup_dirs, compute_loss, preprocess_obs, set_seed
+from utils import setup_logs, setup_wnb, setup_dirs, compute_loss, render_obs, set_seed
 from cem import plan_action
 from dataset import PlaNetDataset
 from models import get_models
@@ -34,7 +33,6 @@ def main(args: Namespace):
     metrics_list = []
 
     env = suite.load(domain_name=args.domain_name, task_name=args.task_name, visualize_reward=True)
-    env = pixels.Wrapper(env)
     spec = env.action_spec()
 
     if args.resume:
@@ -72,7 +70,7 @@ def main(args: Namespace):
                 }
                 time_step = env.reset()
                 for _ in range(math.ceil(args.T/args.n_action_repeat)):
-                    obs = preprocess_obs(time_step.observation["pixels"])
+                    obs = render_obs(env)
                     action = np.random.uniform(spec.minimum, spec.maximum, spec.shape).astype(np.float32)
 
                     reward = 0.0
@@ -86,10 +84,10 @@ def main(args: Namespace):
 
                 dataset.add({k: torch.stack(v) for (k,v) in trajectory.items()})
 
-    for model in models.values():
-        model.train()
-
     for step in tqdm(range(start_step, args.n_steps), desc="Training"):
+
+        for model in models.values():
+            model.train()
 
         metrics_dict = {
             "obs_loss": 0.0,
@@ -127,7 +125,7 @@ def main(args: Namespace):
 
         if step % args.log_every == 0:
             logger.info(f"Step {step} metrics:")
-            reward = np.mean([dataset.trajectories[-i]['reward'].sum() for i in range(5)])
+            reward = np.mean([dataset.trajectories[-i]['reward'].sum() for i in range(1, 6)])
             for key, value in metrics_dict.items():
                 logger.info(f"{key}: {value}")
             logger.info(f"Rewards: {reward}")
@@ -142,7 +140,7 @@ def main(args: Namespace):
                 model.eval()
 
             time_step = env.reset()
-            obs = preprocess_obs(time_step.observation["pixels"])
+            obs = render_obs(env)
             h = torch.zeros((1, args.hidden_dim)).cuda()
             trajectory = {
                 "observation": [],
@@ -155,6 +153,7 @@ def main(args: Namespace):
                     s = mu_s + torch.randn_like(sigma_s) * sigma_s
                     action = plan_action(args, models, s, h)
                     action += 0.3 * torch.randn_like(action)
+                    action.clamp_(-1.0, 1.0)
 
                 reward = 0.0
                 for _ in range(args.n_action_repeat):
@@ -166,7 +165,7 @@ def main(args: Namespace):
                 trajectory["reward"].append(torch.tensor(reward))
 
                 h = models["det_state_model"](s, action.unsqueeze(0), h)
-                obs = preprocess_obs(time_step.observation["pixels"])
+                obs = render_obs(env)
 
             dataset.add({k: torch.stack(v) for (k,v) in trajectory.items()})
 
