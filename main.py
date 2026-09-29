@@ -141,7 +141,10 @@ def main(args: Namespace):
 
             time_step = env.reset()
             obs = render_obs(env)
-            h = torch.zeros((1, args.hidden_dim)).cuda()
+            h = torch.zeros((1, args.hidden_dim), device="cuda")
+            s = torch.zeros((1, args.latent_dim), device="cuda")
+            action = torch.zeros((1, args.action_dim), device="cuda")
+            h = models["det_state_model"](s, action, h)
             trajectory = {
                 "observation": [],
                 "action": [],
