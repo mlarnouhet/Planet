@@ -77,7 +77,6 @@ def compute_loss(args: Namespace, models: Dict[str, nn.Module], batch: Dict[str,
     stoch_state_model = models["stoch_state_model"]
     obs_model = models["obs_model"]
     reward_model = models["reward_model"]
-    mse_loss = nn.MSELoss()
 
     batch_obs_loss = 0.0
     batch_reward_loss = 0.0
@@ -103,7 +102,7 @@ def compute_loss(args: Namespace, models: Dict[str, nn.Module], batch: Dict[str,
         s = encoder_pred_state
 
         if k > 0:
-            reward_loss = mse_loss(pred_reward.squeeze(1), reward)
+            reward_loss = 1/2 * (pred_reward.squeeze(1) - reward).square().mean()
         else:
             reward_loss = torch.tensor(0.0, device="cuda")
         obs_loss = 1/2 * ((pred_obs - observation)**2).flatten(start_dim=1).sum(dim=1).mean()
