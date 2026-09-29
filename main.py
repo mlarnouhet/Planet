@@ -45,7 +45,7 @@ def main(args: Namespace):
         models["obs_model"].load_state_dict(checkpoint["obs_model"])
         models["reward_model"].load_state_dict(checkpoint["reward_model"]) 
         optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-        dataset.trajectories = checkpoint["trajectories"]
+        dataset.load_dataset(checkpoint["trajectories"])
         metrics_list = checkpoint["metrics_list"]
         start_step = checkpoint["step"]+1
         logger.info(f"Resuming run {args.run_id} on {args.domain_name}-{args.task_name} at step {start_step}")
@@ -178,7 +178,7 @@ def main(args: Namespace):
                 "obs_model": models["obs_model"].state_dict(),
                 "reward_model": models["reward_model"].state_dict(),       
                 "optimizer_state_dict": optimizer.state_dict(),
-                "trajectories": dataset.trajectories,
+                "trajectories": dataset.checkpoint_dataset(),
                 "metrics_list": metrics_list,
                 "step": step,
                 "wandb_run_id": wandb_run_id if args.setup_wandb else "" 

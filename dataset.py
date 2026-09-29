@@ -24,5 +24,21 @@ class PlaNetDataset:
     def add(self, trajectory: Dict[str, torch.Tensor]):
         self.trajectories.append(trajectory)
 
+    def checkpoint_dataset(self) -> List[Dict[str, torch.Tensor]]:
+        return [
+            {
+                key: ((value + 0.5) * 32).floor().clamp(0, 31).to(torch.uint8)
+                if (key == "observation") else value
+                for (key, value) in trajectory.items()
+            }
+            for trajectory in self.trajectories
+        ]
+
+    def load_dataset(self, trajectories: List[Dict[str, torch.Tensor]]) -> None:
+        self.trajectories = [trajectory.copy() for trajectory in trajectories]
+        for trajectory in self.trajectories:
+            obs = trajectory["observation"].float()
+            trajectory["observation"] = (obs + torch.rand_like(obs)) / 32 - 0.5
+
             
                 
