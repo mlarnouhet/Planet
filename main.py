@@ -76,7 +76,7 @@ def main(args: Namespace):
                     reward = 0.0
                     for _ in range(args.n_action_repeat):
                         time_step = env.step(action)
-                        reward += time_step.reward.astype(np.float32) if time_step.reward is not None else 0.0
+                        reward += np.float32(time_step.reward) if time_step.reward is not None else 0.0
 
                     trajectory["observation"].append(obs)
                     trajectory["action"].append(torch.tensor(action))
@@ -161,7 +161,7 @@ def main(args: Namespace):
                 reward = 0.0
                 for _ in range(args.n_action_repeat):
                     time_step = env.step(action.cpu().numpy())
-                    reward += (time_step.reward.astype(np.float32) if time_step.reward is not None else 0.0)
+                    reward += np.float32(time_step.reward) if time_step.reward is not None else 0.0
 
                 trajectory["observation"].append(obs)
                 trajectory["action"].append(action.cpu())
