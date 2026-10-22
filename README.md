@@ -107,7 +107,7 @@ The task is to swing the pole upward and balance it by moving the cart.
       <img src="assets/cartpole_reward.png" alt="CartPole swing-up training reward versus training iteration" width="640">
     </td>
     <td align="center" valign="middle">
-      <video src="assets/cart_trajectory.mp4" controls muted loop playsinline preload="metadata" width="320" aria-label="CartPole swing-up trajectory"></video>
+      <video src="https://github.com/mlarnouhet/Planet/blob/main/assets/cart_trajectory.mp4" controls muted loop playsinline preload="metadata" width="320" aria-label="CartPole swing-up trajectory"></video>
       <br>
       <a href="assets/cart_trajectory.mp4">Open video</a>
     </td>
