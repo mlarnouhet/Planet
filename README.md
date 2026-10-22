@@ -107,9 +107,9 @@ The task is to swing the pole upward and balance it by moving the cart.
       <img src="assets/cartpole_reward.png" alt="CartPole swing-up training reward versus training iteration" width="640">
     </td>
     <td align="center" valign="middle">
-      <video src="https://github.com/mlarnouhet/Planet/blob/main/assets/cart_trajectory.mp4" controls muted loop playsinline preload="metadata" width="320" aria-label="CartPole swing-up trajectory"></video>
+      <video src="https://github.com/user-attachments/assets/fcb438b7-f9cd-4893-8602-43b17a8feb49" controls muted loop playsinline preload="metadata" width="320" aria-label="CartPole swing-up trajectory"></video>
       <br>
-      <a href="assets/cart_trajectory.mp4">Open video</a>
+      <a href="https://github.com/user-attachments/assets/fcb438b7-f9cd-4893-8602-43b17a8feb49">Open video</a>
     </td>
   </tr>
 </table>
@@ -128,9 +128,9 @@ The agent moves the cup to catch the suspended ball.
       <img src="assets/ball_reward.png" alt="Ball-in-Cup catch training reward versus training iteration" width="640">
     </td>
     <td align="center" valign="middle">
-      <video src="assets/ball_trajectory.mp4" controls muted loop playsinline preload="metadata" width="320" aria-label="Ball-in-Cup catch trajectory"></video>
+      <video src="https://github.com/user-attachments/assets/8e363818-3830-45ad-86d4-14231490d909" controls muted loop playsinline preload="metadata" width="320" aria-label="Ball-in-Cup catch trajectory"></video>
       <br>
-      <a href="assets/ball_trajectory.mp4">Open video</a>
+      <a href="https://github.com/user-attachments/assets/8e363818-3830-45ad-86d4-14231490d909">Open video</a>
     </td>
   </tr>
 </table>
